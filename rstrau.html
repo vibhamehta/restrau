@@ -1,0 +1,85 @@
+<html>
+<head>
+<title>Restaurant Bill</title>
+</head>
+<body bgcolor="grey">
+	<h1><center>Bill</center></h1>
+<center>
+	
+		<form name="f1">
+			
+			<label>Item Code</label>
+		
+			<input type="text" name="icode" onBlur="check(f1);">
+		<br><br>
+			
+			<label>Item Name</label>
+			<input type="text" name="iname" disabled>
+			<br><br>
+			<label>Item Price</label>
+			<input type="text" name="iprc" disabled>
+			<br><br>
+			<label>Item Qty.</label>
+			<input type="text" name="iqty" onBlur="checkQty(f1);">
+			<br><br>
+			<label>Total Amt.</label>
+			<input type="text" name="total"><br><br>
+			<label>Item Tax.</label>
+			<input type="text" name="itax" onBlur="checktax(f1);">
+			<br><br>
+			<label>Total</label>
+			<input type="text" name="ibill" disabled><br><br>
+				<label>Total bill</label>
+			<input type="text" name="ibillw" onBlur="checktax(f1);">
+		</form>
+	</center>
+	<script>
+	function check(f1)
+	{
+		var x=parseInt(f1.icode.value);
+		if(x==1)
+		{
+			f1.iname.value="Pizza";
+			f1.iprc.value="70";
+		}else if(x==2)
+		{
+			f1.iname.value="Tea";
+			f1.iprc.value="40";
+		}else if(x==3)
+		{
+			f1.iname.value="Coffee";
+			f1.iprc.value="50";
+		}else
+		{
+			alert("Invalid Input...");
+			f1.iname.value="";
+			f1.iprc.value="";
+		}
+	}
+	function checkQty(f1)
+	{
+		var q=parseInt(f1.iqty.value);
+		var p=parseInt(f1.iprc.value);
+		var x;
+		if(p>0)
+		{
+			x=q*p;
+			f1.total.value=x;
+		}else
+		{
+			alert("Enter valid qty...");
+		}
+	}
+    function checktax(f1)
+    {
+      var x=parseInt(f1.total.value);
+      var p=parseInt(f1.itax.value)
+      var y;
+      y=(p/100)*x+x;
+      y=Math.floor(y);
+      f1.ibill.value=y;
+    }
+    </script>
+    <center><input type="button" value="Print"></center>
+</body>
+</html>
